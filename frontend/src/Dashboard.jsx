@@ -9,8 +9,8 @@ export default function Dashboard() {
         <h1 className="text-center font-bold text-xl mb-10">Dashboard</h1>
 
         <nav className="flex flex-col space-y-4 px-6">
-          <Link to="/" className="hover:text-gray-200">Dashboard</Link>
-          <Link to="/updateproduct" className="hover:text-gray-200">Books</Link>
+          <Link to="/dash" className="hover:text-gray-200">Dashboard</Link>
+          <Link to="/readall" className="hover:text-gray-200">Books</Link>
           <Link to="/addproduct" className="hover:text-gray-200">Add Book</Link>
           <Link to="/customers" className="hover:text-gray-200">Customers</Link>
           <Link to="/orders" className="hover:text-gray-200">Orders</Link>

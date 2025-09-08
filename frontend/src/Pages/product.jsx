@@ -44,6 +44,10 @@ function Product() {
             <p className="text-gray-600 text-sm">{item.description}</p>
             <p className="font-bold mt-2">Price: ${item.price}</p>
             <p className="text-sm mt-1">Quantity: {item.quantity}</p>
+            
+            <button 
+            disabled ={item.status !== "Available"}
+            className={` px-6 py-2 text-white rounded-lg mt-2 mb-2 ml-10 ${item.status == "Available" ? "bg-yellow-400" : "bg-gray-500 line-through} px-6 py-2 text-white rounded-lg mt-2 mb-2 ml-10"}`}>Add to cart</button>
           </div>
         ))}
       </div>

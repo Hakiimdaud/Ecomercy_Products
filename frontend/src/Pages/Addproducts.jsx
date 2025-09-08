@@ -1,29 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-  const [picture, setPicture] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [status, setStatus] = useState("Available");
-
+  const [description, setDescription] = useState("");
+  const [picture, setPicture] = useState("");
   const navigate = useNavigate();
 
   const handleCreateData = () => {
     const formData = new FormData();
-    formData.append("img", picture);
     formData.append("name", name);
     formData.append("price", price);
-    formData.append("description", description);
     formData.append("quantity", quantity);
-    formData.append("status", status);
+    formData.append("description", description);
+    formData.append("img", picture);
 
     axios.post("http://localhost:7000/create/product", formData).then(() => {
         alert("✅ Product Added Successfully");
-        navigate("/books"); // redirect to book list page
+        navigate("/readall"); // redirect to book list page
       })
       // .catch((err) => console.error("Error:", err));
   };
@@ -47,6 +44,13 @@ const AddProduct = () => {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
       />
+      <input
+        type="text"
+        placeholder="Quantity"
+        className="border p-2 mb-2 w-full"
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
+      />
 
       <input
         type="text"
@@ -56,35 +60,22 @@ const AddProduct = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <input
-        type="text"
-        placeholder="Quantity"
-        className="border p-2 mb-2 w-full"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
-      />
 
-      <select
-        className="border p-2 mb-2 w-full"
-        value={status}
-        onChange={(e) => setStatus(e.target.value)}
-      >
-        <option value="Available">Available</option>
-        <option value="Out of Stock">Out of Stock</option>
-      </select>
+    
 
       <input
         type="file"
         className="border p-2 mb-2 w-full"
         onChange={(e) => setPicture(e.target.files[0])}
       />
-
+      <Link to={"/readall"}>
       <button
         onClick={handleCreateData}
         className="bg-orange-500 text-white px-4 py-2 rounded w-full"
-      >
+        >
         Add Product
       </button>
+      </Link>
     </div>
   );
 };
